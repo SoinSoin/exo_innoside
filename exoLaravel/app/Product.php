@@ -8,6 +8,7 @@ class Product extends Model
 {
     public function model()
     {
-        return $this->hasMany('App\Model');
+        return $this->belongsTo('App\Model','customers');
+        return $this->belongsTo('App\Model','customers');
     }
 }
