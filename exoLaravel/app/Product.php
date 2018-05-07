@@ -9,6 +9,5 @@ class Product extends Model
     public function model()
     {
         return $this->belongsTo('App\Model','customers');
-        return $this->belongsTo('App\Model','customers');
     }
 }

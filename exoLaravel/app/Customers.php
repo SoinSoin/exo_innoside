@@ -8,7 +8,7 @@ class Customers extends Model
 {
     public function customers()
     {
-            return $this->hasMany('App\Customers');
+        return $this->hasMany('App\Customers');
         
     }
     //
