@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 use DB;
 use App\Quotation;
@@ -13,9 +15,12 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function getAllCustomer()
     {
-        return Customers::all();
+        $customers = Customers::all();
+        return View::make('customers.index')->with('customers', $customers);
+
     }
 
     /**
@@ -34,12 +39,12 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $customer = Customers::create($request->all());
+    // public function store(Request $request)
+    // {
+    //     $customer = Customers::create($request->all());
 
-        return response()->json($customer, 201);
-    }
+    //     return response()->json($customer, 201);
+    // }
 
     /**
      * Display the specified resource.
@@ -47,10 +52,10 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function getCustomer($id)
     {
-
-        return Customers;
+        $customers = Customers::findorfail($id);
+        return View::make('customers.customer_details')->with('customers', $customers);
 
     }
 
@@ -72,12 +77,12 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        $customer->update($request->all());
+    // public function update(Request $request, $id)
+    // {
+    //     $customer->update($request->all());
 
-        return response()->json($customer, 200);
-    }
+    //     return response()->json($customer, 200);
+    // }
 
     /**
      * Remove the specified resource from storage.
@@ -85,10 +90,9 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function deleteCustomer($id)
     {
-        $customer->delete();
-
-        return response()->json(null, 204);
+        $customersup = Customers::destroy($id);
+        return View::make('customers')->with('customersup',$customersup);
     }
 }

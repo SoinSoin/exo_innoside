@@ -14,7 +14,9 @@
 </head>
 
 <body>
-
+        @if ($customersup)
+        {{'supprimer'}}
+    @endif
 </body>
 
 </html>
